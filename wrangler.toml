@@ -2,9 +2,6 @@ name = "researcher"
 main = "src/index.ts"
 compatibility_date = "2026-04-28"
 
-[build]
-  command = "npm run build"
-  upload_format = "modules"
-
 [ai]
-  usage_model = "gpt-4.1"
+binding = "AI"
+usage_model = "gpt-4.1"
