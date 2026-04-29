@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
-import worker, { Env } from '../src/index'
+import worker, { Env } from '../src/index.ts'
 
 const createMockEnv = () => {
   return {
