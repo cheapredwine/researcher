@@ -1,50 +1,46 @@
-# Company Research Agent
+# Researcher
 
-A Cloudflare Worker that orchestrates a four-agent research pipeline for structured company analysis.
+## Required setup
 
-## Structure
+1. Install Node.js 20+ and npm.
+2. Install Cloudflare Wrangler if you want local development and deployment.
+3. Configure a GitHub secret named `CLOUDFLARE_API_TOKEN` for deploys.
+4. Ensure the Cloudflare Worker has an AI binding available as `env.AI`.
 
-- `src/index.ts` — Worker entrypoint and orchestration logic
-- `AGENTS.md` — architecture and prompt definitions
-- `.github/workflows/deploy.yml` — CI/CD deploy workflow
-- `package.json` — build and deploy scripts
-- `tsconfig.json` — TypeScript configuration
-- `wrangler.toml` — Cloudflare Worker config
+## Local setup
 
-## Installation
+From the project root:
 
-1. Install Node.js 20 or later and npm.
-   - On Linux/macOS, use your package manager or download from the official Node.js site.
-   - On Windows, install Node.js from the official installer.
-2. From the project root, install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-## Usage
+## Validate locally
 
-1. Build or typecheck the project:
-   ```bash
-   npm run build
-   npm run typecheck
-   ```
-2. Run tests:
-   ```bash
-   npm run test
-   ```
-3. Deploy with Wrangler:
-   ```bash
-   npm run deploy
-   ```
-4. Query the worker with `?company=<CompanyName>`.
+```bash
+npm run build
+npm run typecheck
+npm run test
+```
 
-## VS Code Tasks
+## Run locally
 
-- Open the Command Palette and run `Tasks: Run Task`.
-- Use `Install dependencies`, `Build TypeScript`, `Typecheck`, or `Deploy Cloudflare Worker`.
+```bash
+wrangler dev
+```
 
-## Notes
+## Deploy
 
-- The worker uses `env.AI.run` to call planner, researcher, validator, and synthesizer agents.
-- All agent outputs are validated as JSON.
-- If agent output is malformed, the worker returns structured error details.
+```bash
+npm run deploy
+```
+
+## GitHub Actions
+
+A push to `main` triggers the workflow in `.github/workflows/deploy.yml`, which:
+
+- installs dependencies
+- builds the project
+- typechecks the code
+- runs tests
+- deploys to Cloudflare

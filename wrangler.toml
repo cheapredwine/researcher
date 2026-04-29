@@ -1,4 +1,4 @@
-name = "company-research-agent"
+name = "researcher"
 main = "src/index.ts"
 compatibility_date = "2026-04-28"
 
