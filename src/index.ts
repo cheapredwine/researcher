@@ -1,5 +1,7 @@
+import { Ai } from '@cloudflare/workers-types'
+
 export interface Env {
-  AI: AIBinding
+  AI: Ai
 }
 
 export interface AIChoice {
@@ -19,7 +21,7 @@ async function runAgent(env: Env, systemPrompt: string, userPrompt: string) {
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userPrompt }
     ]
-  }) as AIResponse
+  }) as any
 
   const content = response?.choices?.[0]?.message?.content
   return content ?? ''

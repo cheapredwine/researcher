@@ -4,9 +4,9 @@ import worker, { Env } from '../src/index'
 const createMockEnv = () => {
   return {
     AI: {
-      run: vi.fn()
+      run: vi.fn<any, any>()
     }
-  } satisfies Env
+  } as unknown as Env
 }
 
 describe('Company Research Agent Worker', () => {
